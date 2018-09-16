@@ -1,0 +1,10 @@
+
+drop database webSite;
+create database webSite;
+
+use webSite;
+
+
+
+
+
