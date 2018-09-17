@@ -24,11 +24,10 @@ delimiter //
 create procedure registroUsuarios(nombreManda varchar(30),
 								  apellidosManda varchar(30),
 							      correoManda varchar(30),
-							     
-							      kdr varchar(10),
-							      fechaManda varchar(30))
+								  fechaManda varchar(30),							     
+							      kdrManda varchar(10))
 begin
-insert into persona value(null,nombreManda,apellidosManda,correoManda,telefonoManda,fechaManda);
+insert into persona value(null,nombreManda,apellidosManda,correoManda,fechaManda,kdrManda);
 	end //
 delimiter ;
 
@@ -39,41 +38,26 @@ select id_Persona from persona where correo=correoManda;
 	end //
 delimiter ;
 
-DELIMITER //
-CREATE TRIGGER nuevoUsuario AFTER INSERT ON persona
- FOR EACH ROW begin
-insert into usuario values(null,new.id_Persona,new.correo,'123456',concat_ws("",new.id_Persona,new.telefono));
-end
-//
-DELIMITER ;
+delimiter //
+create procedure aperturaDeCuenta(idPersona int(5),
+							      cuentaManda varchar(30),
+							      passManda varchar(30),
+							      kdrManda varchar(30))
+begin
+insert into usuario values(null,idPersona,cuentaManda,passManda,kdrManda);
+	end //
+delimiter ;
 
 delimiter //
 create procedure iniciarSesion(correoManda varchar(30),passManda varchar(30))
 begin
-select kdr from usuario where cuenta=correoManda and pass=passManda; 
+select id_Usuario from usuario where cuenta=correoManda and pass=passManda; 
 	end //
 delimiter ;
 
-
-
-insert into persona values(null,"Antonio","Alonso","")
-
-
+call registroUsuarios("Antonio","Alonso Perez","antoniomc159807@gmail.com","1998-07-15","159807");
+call aperturaDeCuenta(1,"antoniomc159807@gmail.com","123456","159807");
 call iniciarSesion("antoniomc159807@gmail.com","123456");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
