@@ -3,7 +3,7 @@ package BD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Conexion {
+public class ConexionCall {
     private Connection con;
     
     private String usuario;
@@ -11,13 +11,13 @@ public class Conexion {
     private String url;
     private String nombreBD;
 
-    public Conexion() {
+    public ConexionCall() {
         url="jdbc:mysql://localhost/webSite";
         usuario="root";
         password="";
     }
 
-    public Conexion(String usuario, String password, String url, String nombreBD) {
+    public ConexionCall(String usuario, String password, String url, String nombreBD) {
         this.usuario = usuario;
         this.password = password;
         this.url = url;

@@ -1,3 +1,5 @@
+
+
 drop database website;
 create database website;
 	use website;
@@ -6,7 +8,6 @@ create table persona(id_Persona int(5)auto_increment primary key,
 					nombre varchar(30),
 					apellidos varchar(30),
 					correo varchar(50)unique,
-					fecha_nacimiento date,
 					kdr varchar(10))Engine=Innodb;
 
 create table usuario(id_Usuario int auto_increment primary key,
@@ -14,6 +15,7 @@ create table usuario(id_Usuario int auto_increment primary key,
 					 cuenta varchar(30),
 					 pass varchar(30),
 					 kdr varchar(10)unique,
+					 firstTime int(1),
 					 foreign key(id_Persona) references persona(id_Persona)on update cascade
 					 on delete cascade,
 					 foreign key(cuenta) references persona(correo)on update cascade
@@ -23,13 +25,25 @@ engine=innoDB;
 delimiter //
 create procedure registroUsuarios(nombreManda varchar(30),
 								  apellidosManda varchar(30),
-							      correoManda varchar(30),
-								  fechaManda varchar(30),							     
+							      correoManda varchar(30),						     
 							      kdrManda varchar(10))
 begin
-insert into persona value(null,nombreManda,apellidosManda,correoManda,fechaManda,kdrManda);
+insert into persona value(null,nombreManda,apellidosManda,correoManda,kdrManda);
 	end //
 delimiter ;
+
+delimiter //
+create procedure validarKDR(kdrManda varchar(30))
+begin
+select kdr from persona where kdr=kdrManda;
+	end //
+delimiter ;
+
+
+
+
+
+
 
 delimiter //
 create procedure buscarCorreo(correoManda varchar(30))
@@ -37,6 +51,28 @@ begin
 select id_Persona from persona where correo=correoManda;
 	end //
 delimiter ;
+
+
+
+
+
+
+
+call registroUsuarios("antonio","alonso","antoniomc159807@gmail.com","159807");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 delimiter //
 create procedure aperturaDeCuenta(idPersona int(5),

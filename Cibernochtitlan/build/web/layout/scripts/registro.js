@@ -42,21 +42,14 @@ function registro(){
     document.getElementById("respuesta").innerHTML = "";
     var nombre=document.getElementById("nombre");
     var nom=nombre.value;
-    var paterno=document.getElementById("paterno");
-    var pat=paterno.value;
-    var materno=document.getElementById("materno");
-    var mat=materno.value;
+    var apellidos=document.getElementById("apellidos");
+    var ape=apellidos.value;
     var correo=document.getElementById("correo");
     var cor=correo.value;
-    var telefono=document.getElementById("telefono");
-    var tel=telefono.value;
-    var fecha=document.getElementById("fecha");
-    var fec=fecha.value;
-     
     xhr.open("POST","../RegistroUsuarios", true);
     xhr.onreadystatechange = verificaDetalleRegistro;
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send("nom=" + nom+"&pat=" + pat +"&mat=" + mat +"&cor=" + cor +"&fec=" + fec+"&tel=" +tel);
+    xhr.send("nom=" + nom+"&ape=" + ape +"&cor=" + cor);
     
 }
 

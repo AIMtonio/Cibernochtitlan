@@ -106,7 +106,7 @@ public class Login extends HttpServlet {
           
              try{
             final String sql= "{call iniciarSesion(?,?)}";//Sintaxis
-            Conexion objConexion=new Conexion();//Creo conexion
+            ConexionCall objConexion=new ConexionCall();//Creo conexion
             CallableStatement cs= objConexion.getCon().prepareCall(sql);//Accede al procedimiento
             cs.setString(1, usuario);//Envio de parametros, (indice, valor a enviar)
             cs.setString(2, pass);
